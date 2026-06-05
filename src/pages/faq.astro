@@ -1,0 +1,86 @@
+---
+import Base from '../layouts/Base.astro';
+import CtaBand from '../components/CtaBand.astro';
+
+const faqs = [
+  {
+    q: 'What services does MyFINANCE Online provide?',
+    a: 'We specialise in a wide range of cloud accounting services tailored to your financial needs. Since 2008, our team has delivered comprehensive solutions including bookkeeping, tax planning, payroll management and financial reporting. We use modern cloud technology to keep your financial information accessible, secure and up to date — so you can focus on growing your business while we handle the detail.',
+  },
+  {
+    q: 'How can cloud accounting benefit my business?',
+    a: 'Cloud accounting gives you real-time access to your financial data from anywhere, easier collaboration with your accountant, and stronger security for sensitive information. You can track expenses, generate reports and manage invoices efficiently, with less paperwork and far less wasted time. The result is faster, better-informed decisions that help drive your business forward.',
+  },
+  {
+    q: 'Why choose MyFINANCE Online for accounting services?',
+    a: 'Choosing us means a trusted partner with over a decade of experience and a specialised focus on cloud accounting. We pride ourselves on exceptional client service — the support and guidance you need to navigate your financial landscape — and we stay current with the latest accounting practices and technology so you always benefit from the best approach.',
+  },
+  {
+    q: 'How does your pricing work?',
+    a: 'We work on fixed-fee pricing — a clear, agreed price for the work, set up front. No hourly billing, no surprise invoices and no hidden costs, so you can budget with confidence. It also keeps us focused on doing the work well and promptly rather than clocking hours. You always know exactly what you’re paying, and what you’re getting for it.',
+  },
+  {
+    q: 'How do I get a quote?',
+    a: 'Just complete our short quote form and tell us a little about your business and what you need. That lets us understand your situation and put together an accurate, tailored proposal without missing any important detail — and it only takes a few minutes.',
+    cta: { label: 'Request a quote', href: '/contact#quote' },
+  },
+  {
+    q: 'How does the onboarding process work once I sign up?',
+    a: 'Once you sign up, we guide you through a simple onboarding process: gathering your business information, accessing the relevant documents, setting up software integrations (like Xero or Dext), and scheduling your first free consultation.',
+  },
+  {
+    q: 'Can I switch from my current accountant to MyFINANCE Online easily?',
+    a: 'Yes — switching is easy. We help you request the handover documents from your previous accountant and ensure a smooth transition without interrupting your business operations.',
+  },
+  {
+    q: 'Do you offer once-off services, or only monthly packages?',
+    a: 'Both. You can choose once-off services like Annual Financial Statements or SARS objections, or sign up for a monthly fixed-fee package for ongoing support.',
+  },
+  {
+    q: 'Will I have a dedicated accountant?',
+    a: 'Yes. You’ll work with a dedicated accountant who knows your business, supported by our wider team for specialised services like tax, payroll and compliance.',
+  },
+  {
+    q: 'What is your approach to tax planning?',
+    a: 'We take a proactive, strategic approach to tax planning — helping clients minimise their tax liabilities as far as the law allows. Our advice is always fully compliant with South African tax law; we don’t engage in any unethical or questionable practices. Integrity and transparency are at the core of how we operate.',
+  },
+];
+---
+<Base title="FAQ — MyFINANCE Online" description="Answers to common questions about MyFINANCE Online: our cloud accounting services, pricing, onboarding, switching accountants and our approach to tax planning.">
+  <!-- Header -->
+  <section class="bg-navy-deep">
+    <div class="container-v py-20">
+      <span class="eyebrow">Your questions answered</span>
+      <h1 class="mt-4 max-w-3xl text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl">
+        Find clarity on our services.
+      </h1>
+      <p class="mt-5 max-w-2xl text-lg leading-relaxed text-white/60">
+        The things clients most often ask, in one place. Can’t find what you’re after? Get in touch — we’re happy to help.
+      </p>
+    </div>
+  </section>
+
+  <!-- Accordion -->
+  <section class="container-v py-20">
+    <div class="mx-auto max-w-3xl space-y-3">
+      {faqs.map((f) => (
+        <details class="group rounded-2xl border border-slate-200 bg-white px-6 py-1 open:border-accent/40 open:shadow-sm">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-5 text-left text-base font-semibold text-navy [&::-webkit-details-marker]:hidden">
+            {f.q}
+            <span class="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-accent-soft text-accent transition-transform duration-200 group-open:rotate-45">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </span>
+          </summary>
+          <div class="pb-5 pr-10">
+            <p class="text-sm leading-relaxed text-slate-600">{f.a}</p>
+            {f.cta && (
+              <a href={f.cta.href} class="btn-primary mt-4 !px-5 !py-2.5">{f.cta.label}</a>
+            )}
+          </div>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <CtaBand heading="Still have a question?" sub="Send us a message and we’ll get back to you within one business day." />
+</Base>
