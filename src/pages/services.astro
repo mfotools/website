@@ -1,0 +1,112 @@
+---
+import Base from '../layouts/Base.astro';
+import CtaBand from '../components/CtaBand.astro';
+
+const groups = [
+  {
+    title: 'Accounting & bookkeeping',
+    body: 'We keep your books current in the cloud so the numbers are always ready when you — or the bank — need them.',
+    items: [
+      'Monthly and annual bookkeeping',
+      'Bank, supplier and customer reconciliations',
+      'Management accounts and monthly reporting packs',
+      'Cloud accounting setup, migration and training',
+      'VAT processing and reconciliation',
+    ],
+  },
+  {
+    title: 'Annual financial statements',
+    body: 'Independently compiled financial statements that satisfy the Companies Act, SARS and your funders.',
+    items: [
+      'Compilation of annual financial statements (ISRS 4410)',
+      'Companies, close corporations, trusts and sole proprietors',
+      'Working papers and supporting schedules',
+      'Comparatives, notes and director / member reports',
+    ],
+  },
+  {
+    title: 'Tax & SARS compliance',
+    body: 'Full-service tax — registered, calculated, submitted and followed through with SARS on your behalf.',
+    items: [
+      'Income tax returns (ITR14 / ITR12 / IT12TR)',
+      'Provisional tax (IRP6) — first, second and third',
+      'VAT registration and VAT201 submissions',
+      'PAYE / SDL / UIF registration and returns',
+      'Tax clearance, SARS disputes and correspondence',
+    ],
+  },
+  {
+    title: 'Payroll',
+    body: 'Accurate, on-time payroll with all the SARS and Department of Labour submissions handled.',
+    items: [
+      'Monthly payslips and payroll processing',
+      'EMP201 monthly submissions',
+      'EMP501 bi-annual reconciliations and IRP5 / IT3(a)',
+      'UIF declarations and Department of Labour returns',
+    ],
+  },
+  {
+    title: 'Company secretarial (CIPC)',
+    body: 'Keep the company in good standing with CIPC without the paperwork landing on your desk.',
+    items: [
+      'Company and close-corporation registrations',
+      'CIPC annual returns and beneficial-ownership filings',
+      'Director, member and registered-address changes',
+      'Share certificates and statutory registers',
+      'B-BBEE affidavits for exempt micro and qualifying small enterprises',
+    ],
+  },
+  {
+    title: 'Business advisory',
+    body: 'Practical guidance to help you plan ahead, not just look back.',
+    items: [
+      'Budgets and cash-flow forecasting',
+      'Tax planning and structuring',
+      'Business and finance ratio analysis',
+      'A sounding board for big decisions',
+    ],
+  },
+];
+---
+<Base title="Services — MyFINANCE Online" description="Accounting, annual financial statements, tax and SARS compliance, payroll, CIPC company secretarial and business advisory for South African business owners.">
+  <!-- Header -->
+  <section class="bg-navy-deep">
+    <div class="container-v py-20">
+      <span class="eyebrow">Our services</span>
+      <h1 class="mt-4 max-w-3xl text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl">
+        One firm for the full compliance cycle.
+      </h1>
+      <p class="mt-5 max-w-2xl text-lg leading-relaxed text-white/60">
+        Whether you need a once-a-year set of financial statements or a full monthly service, we tailor the engagement to your business — and price it up front so there are no surprises.
+      </p>
+      <div class="mt-8">
+        <a href="/contact#quote" class="btn-primary">Request a quote</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service groups -->
+  <section class="container-v py-24">
+    <div class="space-y-16">
+      {groups.map((g, i) => (
+        <div class="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+          <div>
+            <span class="text-sm font-semibold text-accent">0{i + 1}</span>
+            <h2 class="mt-2 text-2xl font-bold tracking-tight text-navy">{g.title}</h2>
+            <p class="mt-3 text-base leading-relaxed text-slate-600">{g.body}</p>
+          </div>
+          <ul class="grid gap-3 sm:grid-cols-2">
+            {g.items.map((item) => (
+              <li class="flex items-start gap-2.5 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-navy">
+                <span class="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-accent-soft text-[11px] font-bold text-accent">✓</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <CtaBand heading="Not sure which services you need?" sub="Tell us about your business and we’ll recommend the right package — and quote you for it." />
+</Base>

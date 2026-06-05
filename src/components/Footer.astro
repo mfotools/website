@@ -1,0 +1,68 @@
+---
+const year = new Date().getFullYear();
+const cols = [
+  {
+    title: 'Practice',
+    links: [
+      { href: '/services', label: 'Services' },
+      { href: '/about', label: 'About us' },
+      { href: '/contact', label: 'Contact' },
+    ],
+  },
+  {
+    title: 'Clients',
+    links: [
+      { href: '/contact', label: 'Request a quote' },
+      { href: '/contact', label: 'Book a callback' },
+      { href: 'https://newportal.virta.co.za/login', label: 'Client login' },
+    ],
+  },
+];
+// TODO: confirm the firm's public phone number and street address.
+const email = 'info@myfinance-online.co.za';
+const phone = '+27 (0)51 000 0000';
+---
+
+<footer class="bg-navy-deep text-white">
+  <div class="container-v grid gap-10 py-14 md:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
+    <div>
+      <a href="/" class="flex items-baseline gap-0.5 text-lg font-bold tracking-tight">
+        <span class="text-white">MyFINANCE</span><span class="text-accent">Online</span>
+      </a>
+      <p class="mt-4 max-w-xs text-sm leading-relaxed text-white/50">
+        A Bloemfontein-based professional accounting practice — cloud accounting, tax, payroll and advisory for South African business owners.
+      </p>
+      <p class="mt-4 text-xs leading-relaxed text-white/40">
+        SAIPA Professional Accountant (SA) · Commissioner of Oaths
+      </p>
+    </div>
+
+    {cols.map((col) => (
+      <div>
+        <h3 class="text-xs font-semibold uppercase tracking-wider text-white/40">{col.title}</h3>
+        <ul class="mt-4 space-y-2.5">
+          {col.links.map((l) => (
+            <li><a href={l.href} class="text-sm text-white/65 transition-colors hover:text-white">{l.label}</a></li>
+          ))}
+        </ul>
+      </div>
+    ))}
+
+    <div>
+      <h3 class="text-xs font-semibold uppercase tracking-wider text-white/40">Get in touch</h3>
+      <ul class="mt-4 space-y-2.5 text-sm text-white/65">
+        <li><a href={`mailto:${email}`} class="transition-colors hover:text-white">{email}</a></li>
+        <li><a href={`tel:${phone.replace(/[^+0-9]/g, '')}`} class="transition-colors hover:text-white">{phone}</a></li>
+        <li>Bloemfontein, Free State, South Africa</li>
+      </ul>
+      <a href="/contact" class="btn-primary mt-5 !px-5 !py-2.5">Contact us</a>
+    </div>
+  </div>
+
+  <div class="border-t border-white/10">
+    <div class="container-v flex flex-col items-center gap-3 py-6 text-xs text-white/40 sm:flex-row sm:justify-between">
+      <span>© {year} MyFINANCE Online · myfinance-online.co.za</span>
+      <span>Professional accounting services · Built in South Africa.</span>
+    </div>
+  </div>
+</footer>

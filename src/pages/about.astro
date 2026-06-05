@@ -1,0 +1,76 @@
+---
+import Base from '../layouts/Base.astro';
+import CtaBand from '../components/CtaBand.astro';
+
+const values = [
+  {
+    title: 'Accountable',
+    body: 'A registered SAIPA Professional Accountant (SA) stands behind every set of figures and every submission.',
+  },
+  {
+    title: 'Accessible',
+    body: 'Real answers from a real person — not a call-centre ticket. We know your business by name.',
+  },
+  {
+    title: 'Ahead of the deadline',
+    body: 'We track the SARS and CIPC calendar for you and act early, so compliance is calm rather than a crisis.',
+  },
+];
+---
+<Base title="About — MyFINANCE Online" description="MyFINANCE Online is a Bloemfontein-based professional accounting practice led by a SAIPA Professional Accountant (SA) and Commissioner of Oaths.">
+  <!-- Header -->
+  <section class="bg-navy-deep">
+    <div class="container-v grid items-center gap-12 py-20 lg:grid-cols-[1.1fr_0.9fr]">
+      <div>
+        <span class="eyebrow">About the firm</span>
+        <h1 class="mt-4 text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl">
+          A professional practice that treats your business like its own.
+        </h1>
+        <p class="mt-5 max-w-xl text-lg leading-relaxed text-white/60">
+          MyFINANCE Online is a Bloemfontein-based accounting practice serving owner-managed businesses across South Africa. We combine the rigour of a registered professional firm with the convenience of cloud accounting and a secure client portal.
+        </p>
+      </div>
+      <div class="rounded-2xl border border-white/10 bg-white/5 p-7">
+        <h2 class="text-sm font-semibold uppercase tracking-wider text-white/40">Credentials</h2>
+        <ul class="mt-4 space-y-3 text-sm text-white/75">
+          <li class="flex items-start gap-2.5"><span class="mt-0.5 text-accent">●</span> SAIPA Professional Accountant (SA)</li>
+          <li class="flex items-start gap-2.5"><span class="mt-0.5 text-accent">●</span> Commissioner of Oaths</li>
+          <li class="flex items-start gap-2.5"><span class="mt-0.5 text-accent">●</span> Registered SARS tax practitioner</li>
+          <li class="flex items-start gap-2.5"><span class="mt-0.5 text-accent">●</span> Based in Bloemfontein, Free State</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Story -->
+  <section class="container-v py-24">
+    <div class="grid gap-12 lg:grid-cols-[1fr_1fr]">
+      <div>
+        <span class="eyebrow">Our approach</span>
+        <h2 class="mt-4 text-3xl font-bold tracking-tight text-navy">Compliance handled, so you can focus on the business.</h2>
+      </div>
+      <div class="space-y-5 text-base leading-relaxed text-slate-600">
+        <p>
+          Most business owners don’t want to think about accounting — they want it done, done right, and done on time. That’s the brief we work to. We take care of the books, the tax and the statutory filings in the background, and surface only the numbers and decisions that matter to you.
+        </p>
+        <p>
+          Working in the cloud means you’re never tied to a desktop or a filing cabinet. Share documents securely, approve work online and see exactly where things stand — from anywhere, on any device.
+        </p>
+        <p>
+          And because we’re a registered professional practice, you get more than data capture: you get judgement, accountability and someone who will represent you to SARS when it counts.
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-16 grid gap-6 md:grid-cols-3">
+      {values.map((v) => (
+        <div class="card">
+          <h3 class="text-lg font-semibold text-navy">{v.title}</h3>
+          <p class="mt-3 text-sm leading-relaxed text-slate-600">{v.body}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <CtaBand heading="Work with a firm that knows you by name." sub="Get in touch and let’s talk about what your business needs." />
+</Base>

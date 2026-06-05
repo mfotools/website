@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    @apply bg-white text-navy font-sans antialiased;
+  }
+}
+
+@layer components {
+  .container-v {
+    @apply mx-auto max-w-content px-6;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold transition-all duration-150;
+  }
+  .btn-primary {
+    @apply btn bg-accent text-white hover:bg-accent-bright hover:-translate-y-0.5 shadow-lg shadow-accent/20;
+  }
+  .btn-ghost {
+    @apply btn border border-white/25 text-white hover:bg-white/10;
+  }
+  .btn-dark {
+    @apply btn bg-navy text-white hover:bg-navy-soft hover:-translate-y-0.5;
+  }
+
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.18em] text-accent;
+  }
+
+  .card {
+    @apply rounded-2xl border border-slate-200 bg-white p-7 transition-all duration-200 hover:border-navy/30 hover:shadow-xl hover:shadow-navy/5;
+  }
+
+  /* Form controls (shared by the contact / quote / callback forms) */
+  .field {
+    @apply w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-navy placeholder:text-slate-400 transition-colors focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30;
+  }
+  .label {
+    @apply mb-1.5 block text-sm font-medium text-navy;
+  }
+}

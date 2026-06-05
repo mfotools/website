@@ -1,0 +1,15 @@
+# dependencies
+node_modules/
+
+# astro build cache
+.astro/
+
+# logs / env
+*.log
+.env
+.env.*
+.DS_Store
+
+# NOTE: dist/ is intentionally NOT ignored — the deploy model is
+# "build locally, commit dist/, host copies dist/ to the web root".
+# Run `npm run build` before every commit.
