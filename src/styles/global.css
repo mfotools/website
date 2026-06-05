@@ -41,6 +41,44 @@
     @apply rounded-2xl border border-slate-200 bg-white p-7 transition-all duration-200 hover:border-navy/30 hover:shadow-xl hover:shadow-navy/5;
   }
 
+  /* Blog article prose (hand-styled — no typography plugin dependency) */
+  .article {
+    @apply text-[1.0625rem] leading-relaxed text-slate-700;
+  }
+  .article > * + * {
+    @apply mt-5;
+  }
+  .article h2 {
+    @apply mt-10 text-2xl font-bold tracking-tight text-navy;
+  }
+  .article h3 {
+    @apply mt-8 text-xl font-semibold text-navy;
+  }
+  .article p {
+    @apply leading-relaxed;
+  }
+  .article ul {
+    @apply list-disc space-y-2 pl-6 marker:text-accent;
+  }
+  .article ol {
+    @apply list-decimal space-y-2 pl-6 marker:text-accent;
+  }
+  .article a {
+    @apply font-medium text-sky underline underline-offset-2 hover:text-navy;
+  }
+  .article strong {
+    @apply font-semibold text-navy;
+  }
+  .article blockquote {
+    @apply rounded-r-xl border-l-4 border-accent bg-accent-soft/50 px-5 py-4 text-navy;
+  }
+  .article blockquote p {
+    @apply m-0;
+  }
+  .article em {
+    @apply text-slate-500;
+  }
+
   /* Form controls (shared by the contact / quote / callback forms) */
   .field {
     @apply w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-navy placeholder:text-slate-400 transition-colors focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30;
