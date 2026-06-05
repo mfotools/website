@@ -4,16 +4,21 @@ export default {
   theme: {
     extend: {
       colors: {
-        // MyFINANCE Online brand tokens — orange + blue.
-        // Tweak these to match the exact firm brand and the whole site re-themes.
+        // MyFINANCE Online brand tokens — sampled from the firm logo.
+        // navy.* = deep blue family for dark sections; sky = the logo blue;
+        // accent = the logo orange. Re-theme the whole site from here.
         navy: {
-          DEFAULT: '#0f3a6b', // primary blue
-          deep: '#0a2547', // deepest blue (hero / footer backgrounds)
-          soft: '#1a4f8a', // lighter blue
+          DEFAULT: '#0f4c81', // primary deep blue (headings, dark buttons)
+          deep: '#0a3a63', // deepest blue (hero / footer backgrounds)
+          soft: '#1763a0', // lighter blue
+        },
+        sky: {
+          DEFAULT: '#2485c7', // exact logo blue (links / accents)
+          soft: '#e7f1fa',
         },
         accent: {
-          DEFAULT: '#f47b20', // brand orange
-          bright: '#ff8c34', // hover/brighter orange
+          DEFAULT: '#f5881f', // exact logo orange
+          bright: '#ff9b33', // hover/brighter orange
           soft: '#fdeede', // pale orange tint (badges, soft fills)
         },
       },

@@ -9,20 +9,20 @@ const links = [
 const loginUrl = 'https://newportal.virta.co.za/login';
 ---
 
-<header class="sticky top-0 z-50 border-b border-white/10 bg-navy-deep/90 backdrop-blur">
-  <nav class="container-v flex h-16 items-center justify-between">
-    <a href="/" class="flex items-baseline gap-0.5 text-lg font-bold tracking-tight">
-      <span class="text-white">MyFINANCE</span><span class="text-accent">Online</span>
+<header class="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur">
+  <nav class="container-v flex h-[4.5rem] items-center justify-between">
+    <a href="/" class="flex items-center">
+      <img src="/logo.png" alt="MyFINANCE Online — accountants & business advisors" class="h-10 w-auto" />
     </a>
 
-    <div class="hidden items-center gap-7 md:flex">
+    <div class="hidden items-center gap-8 md:flex">
       {links.map((l) => (
-        <a href={l.href} class="text-sm font-medium text-white/70 transition-colors hover:text-white">{l.label}</a>
+        <a href={l.href} class="text-sm font-medium text-navy/70 transition-colors hover:text-navy">{l.label}</a>
       ))}
     </div>
 
     <div class="flex items-center gap-3">
-      <a href={loginUrl} class="hidden text-sm font-medium text-white/70 transition-colors hover:text-white sm:inline">Client login</a>
+      <a href={loginUrl} class="hidden text-sm font-medium text-navy/70 transition-colors hover:text-navy sm:inline">Client login</a>
       <a href="/contact" class="btn-primary !px-5 !py-2.5">Get in touch</a>
     </div>
   </nav>

@@ -10,6 +10,9 @@ node_modules/
 .env.*
 .DS_Store
 
+# raw brand drop folder — source material I read but don't publish
+_brand/
+
 # NOTE: dist/ is intentionally NOT ignored — the deploy model is
 # "build locally, commit dist/, host copies dist/ to the web root".
 # Run `npm run build` before every commit.
