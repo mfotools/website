@@ -16,6 +16,50 @@ const values = [
     body: 'We track the SARS and CIPC calendar for you and act early, so compliance is calm rather than a crisis.',
   },
 ];
+
+// Team. No photos supplied — monogram avatars are generated from the initials
+// in brand colours. To use real photos later, add a `photo: '/team/name.jpg'`
+// field and render an <img> instead of the initials block.
+const team = [
+  {
+    name: 'Jannie Schutte',
+    role: 'Managing Director · Professional Accountant (SA)',
+    bio: 'An expert in business and accounting technology, with experience across JSE-listed entities and start-ups. A dedicated family man and neighbourhood braai specialist.',
+    email: 'jschutte@myfinance-online.co.za',
+    tone: 'navy',
+  },
+  {
+    name: 'Graham Maguire',
+    role: 'Cloud Accountant',
+    bio: 'A dedicated accountant with several years’ experience, recently SAIPA-registered, and a keen outdoor enthusiast.',
+    email: 'graham@myfinance-online.co.za',
+    tone: 'accent',
+  },
+  {
+    name: 'Carolie Marx',
+    role: 'Senior Cloud Accountant',
+    bio: 'Over a decade of experience and SAIPA-registered, combining deep expertise with a calm, considered approach to every engagement.',
+    email: 'carolie@myfinance-online.co.za',
+    tone: 'sky',
+  },
+  {
+    name: 'Elrina Hofmyer',
+    role: 'Senior Cloud Accountant',
+    bio: 'An experienced accountant with a keen eye for detail — and a proud mother of two.',
+    email: 'elrina@myfinance-online.co.za',
+    tone: 'navy',
+  },
+  {
+    name: 'Ednese van der Merwe',
+    role: 'Client Liaison & Executive Assistant',
+    bio: 'Specialises in CIPC, COIDA and payroll, bringing youthful energy and a commitment to excellence to every client interaction.',
+    email: 'ednese@myfinance-online.co.za',
+    tone: 'accent',
+  },
+];
+
+const initials = (name) => name.split(' ').filter(Boolean).map((p) => p[0]).slice(0, 2).join('').toUpperCase();
+const toneClass = { navy: 'bg-navy', accent: 'bg-accent', sky: 'bg-sky' };
 ---
 <Base title="About — MyFINANCE Online" description="MyFINANCE Online is a Bloemfontein-based professional accounting practice led by a SAIPA Professional Accountant (SA) and Commissioner of Oaths.">
   <!-- Header -->
@@ -27,7 +71,7 @@ const values = [
           A professional practice that treats your business like its own.
         </h1>
         <p class="mt-5 max-w-xl text-lg leading-relaxed text-white/60">
-          MyFINANCE Online is a Bloemfontein-based accounting practice serving owner-managed businesses across South Africa. We combine the rigour of a registered professional firm with the convenience of cloud accounting and a secure client portal.
+          Since 2008, MyFINANCE Online has empowered South African business owners in a reliable, professional manner. We’re a Bloemfontein-based practice that combines the rigour of a registered professional firm with the convenience of cloud accounting and a secure client portal.
         </p>
       </div>
       <div class="rounded-2xl border border-white/10 bg-white/5 p-7">
@@ -69,6 +113,37 @@ const values = [
           <p class="mt-3 text-sm leading-relaxed text-slate-600">{v.body}</p>
         </div>
       ))}
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="bg-slate-50 py-24">
+    <div class="container-v">
+      <div class="max-w-2xl">
+        <span class="eyebrow">Our team</span>
+        <h2 class="mt-4 text-3xl font-bold tracking-tight text-navy sm:text-4xl">Dedicated experts behind your numbers.</h2>
+        <p class="mt-4 text-lg leading-relaxed text-slate-600">A close-knit team of cloud accountants and client specialists — empowering your business in a reliable, professional manner since 2008.</p>
+      </div>
+
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {team.map((m) => (
+          <div class="flex flex-col rounded-2xl border border-slate-200 bg-white p-7">
+            <div class="flex items-center gap-4">
+              <div class={`flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full text-lg font-bold text-white ${toneClass[m.tone]}`}>
+                {initials(m.name)}
+              </div>
+              <div>
+                <h3 class="text-base font-semibold text-navy">{m.name}</h3>
+                <p class="text-sm text-accent">{m.role}</p>
+              </div>
+            </div>
+            <p class="mt-4 flex-1 text-sm leading-relaxed text-slate-600">{m.bio}</p>
+            <a href={`mailto:${m.email}`} class="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-sky hover:underline">
+              {m.email}
+            </a>
+          </div>
+        ))}
+      </div>
     </div>
   </section>
 
