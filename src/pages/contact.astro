@@ -96,7 +96,7 @@ const email = 'tax@myfinance-online.co.za';
         <!-- Request a quote -->
         <div id="quote" class="scroll-mt-24 rounded-2xl border border-slate-200 bg-white p-7 shadow-sm">
           <h2 class="text-xl font-bold text-navy">Request a quote</h2>
-          <p class="mt-1.5 text-sm text-slate-500">Tell us a little about your business and we’ll put together a tailored quote.</p>
+          <p class="mt-1.5 text-sm text-slate-500">Tell us about your business needs. Complete the form below for a personalised, no-obligation quote — your first meeting is free, and we’ll tailor our services to fit your business.</p>
           <form action="https://api.web3forms.com/submit" method="POST" class="mt-6 grid gap-4 sm:grid-cols-2">
             <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
             <input type="hidden" name="subject" value="Website enquiry — Quote request" />
@@ -105,20 +105,16 @@ const email = 'tax@myfinance-online.co.za';
             <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off" />
 
             <div>
-              <label class="label" for="q-name">Name</label>
-              <input class="field" id="q-name" type="text" name="name" required placeholder="Your name" />
+              <label class="label" for="q-name">Name <span class="text-accent">*</span></label>
+              <input class="field" id="q-name" type="text" name="name" required placeholder="Jane Smith" />
             </div>
             <div>
-              <label class="label" for="q-email">Email</label>
+              <label class="label" for="q-email">Email address <span class="text-accent">*</span></label>
               <input class="field" id="q-email" type="email" name="email" required placeholder="you@example.com" />
             </div>
             <div>
-              <label class="label" for="q-business">Business name</label>
-              <input class="field" id="q-business" type="text" name="business_name" placeholder="Your business" />
-            </div>
-            <div>
-              <label class="label" for="q-entity">Entity type</label>
-              <select class="field" id="q-entity" name="entity_type">
+              <label class="label" for="q-type">What is your business type?</label>
+              <select class="field" id="q-type" name="business_type">
                 <option value="">Select…</option>
                 <option>Private company (Pty) Ltd</option>
                 <option>Close corporation (CC)</option>
@@ -127,40 +123,56 @@ const email = 'tax@myfinance-online.co.za';
                 <option>Non-profit (NPC)</option>
                 <option>Partnership</option>
                 <option>Individual</option>
+                <option>Not yet registered</option>
               </select>
             </div>
+            <div>
+              <label class="label" for="q-reg">Business registration number</label>
+              <input class="field" id="q-reg" type="text" name="registration_number" placeholder="e.g. CIPC number" />
+            </div>
+            <div>
+              <label class="label" for="q-revenue">What is your annual revenue?</label>
+              <input class="field" id="q-revenue" type="text" name="annual_revenue" placeholder="e.g. R2.5 million" />
+            </div>
+            <div>
+              <label class="label" for="q-employees">How many employees do you have?</label>
+              <input class="field" id="q-employees" type="number" min="0" name="employees" placeholder="e.g. 8" />
+            </div>
             <div class="sm:col-span-2">
-              <label class="label">Services you’re interested in</label>
-              <div class="grid gap-2 sm:grid-cols-2">
-                {['Accounting & bookkeeping', 'Annual financial statements', 'Tax & SARS', 'Payroll', 'CIPC / company secretarial', 'Business advisory'].map((s) => (
-                  <label class="flex items-center gap-2.5 rounded-xl border border-slate-200 px-3 py-2.5 text-sm text-navy">
-                    <input type="checkbox" name="services" value={s} class="h-4 w-4 rounded border-slate-300 text-accent focus:ring-accent" />
-                    {s}
-                  </label>
-                ))}
+              <label class="label">Is your business registered for VAT? <span class="text-accent">*</span></label>
+              <div class="flex gap-3">
+                <label class="flex flex-1 cursor-pointer items-center gap-2.5 rounded-xl border border-slate-200 px-4 py-2.5 text-sm text-navy has-[:checked]:border-accent has-[:checked]:bg-accent-soft">
+                  <input type="radio" name="vat_registered" value="Yes" required class="h-4 w-4 border-slate-300 text-accent focus:ring-accent" /> Yes
+                </label>
+                <label class="flex flex-1 cursor-pointer items-center gap-2.5 rounded-xl border border-slate-200 px-4 py-2.5 text-sm text-navy has-[:checked]:border-accent has-[:checked]:bg-accent-soft">
+                  <input type="radio" name="vat_registered" value="No" class="h-4 w-4 border-slate-300 text-accent focus:ring-accent" /> No
+                </label>
               </div>
             </div>
-            <div>
-              <label class="label" for="q-turnover">Annual turnover band</label>
-              <select class="field" id="q-turnover" name="turnover_band">
+            <div class="sm:col-span-2">
+              <label class="label" for="q-software">What accounting / invoicing software do you currently use?</label>
+              <input class="field" id="q-software" type="text" name="current_software" placeholder="e.g. Xero, Sage, QuickBooks, spreadsheets, none" />
+            </div>
+            <div class="sm:col-span-2">
+              <label class="label" for="q-challenges">What challenges are you currently facing with your accounting?</label>
+              <textarea class="field" id="q-challenges" name="challenges" rows="3" placeholder="Tell us what's not working…"></textarea>
+            </div>
+            <div class="sm:col-span-2">
+              <label class="label" for="q-notes">Additional questions or comments</label>
+              <textarea class="field" id="q-notes" name="message" rows="3" placeholder="Enter any additional questions or comments…"></textarea>
+            </div>
+            <div class="sm:col-span-2">
+              <label class="label" for="q-comm">Preferred method of communication</label>
+              <select class="field" id="q-comm" name="preferred_contact">
                 <option value="">Select…</option>
-                <option>Under R1 million</option>
-                <option>R1m – R5m</option>
-                <option>R5m – R20m</option>
-                <option>R20m – R50m</option>
-                <option>Over R50 million</option>
+                <option>Email</option>
+                <option>Phone call</option>
+                <option>WhatsApp</option>
+                <option>Any of the above</option>
               </select>
             </div>
-            <div>
-              <label class="label" for="q-phone">Phone (optional)</label>
-              <input class="field" id="q-phone" type="tel" name="phone" placeholder="082 000 0000" />
-            </div>
             <div class="sm:col-span-2">
-              <label class="label" for="q-notes">Anything else we should know?</label>
-              <textarea class="field" id="q-notes" name="message" rows="3" placeholder="Optional"></textarea>
-            </div>
-            <div class="sm:col-span-2">
-              <button type="submit" class="btn-primary w-full sm:w-auto">Request my quote</button>
+              <button type="submit" class="btn-primary w-full sm:w-auto">Submit quote request</button>
             </div>
           </form>
         </div>
