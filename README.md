@@ -71,8 +71,8 @@ discussed and kept open.
 
 ### Placeholders to confirm
 
-Search the project for `TODO` — the phone number (`+27 (0)51 000 0000`) and
-street address are placeholders. The contact email defaults to
-`info@myfinance-online.co.za`. The "Client login" links point at the Virta
-portal (`newportal.virta.co.za/login`); change if the firm uses a different
-login.
+Email (`tax@myfinance-online.co.za`) and address (100 Waverley Road,
+Bloemfontein) are set. No phone number is shown by design. Office hours
+("Mon–Fri, 08:00–17:00") are an assumption — search `TODO` to confirm. The
+"Client login" links point at the Virta portal
+(`newportal.virta.co.za/login`); change if the firm uses a different login.

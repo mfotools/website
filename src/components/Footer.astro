@@ -19,8 +19,6 @@ const cols = [
   },
 ];
 const email = 'tax@myfinance-online.co.za';
-// TODO: confirm the firm's public phone number.
-const phone = '+27 (0)51 000 0000';
 ---
 
 <footer class="bg-navy-deep text-white">
@@ -52,7 +50,6 @@ const phone = '+27 (0)51 000 0000';
       <h3 class="text-xs font-semibold uppercase tracking-wider text-white/40">Get in touch</h3>
       <ul class="mt-4 space-y-2.5 text-sm text-white/65">
         <li><a href={`mailto:${email}`} class="transition-colors hover:text-white">{email}</a></li>
-        <li><a href={`tel:${phone.replace(/[^+0-9]/g, '')}`} class="transition-colors hover:text-white">{phone}</a></li>
         <li>100 Waverley Road, Bloemfontein, South Africa</li>
       </ul>
       <a href="/contact" class="btn-primary mt-5 !px-5 !py-2.5">Contact us</a>

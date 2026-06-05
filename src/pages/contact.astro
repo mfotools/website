@@ -13,9 +13,8 @@ const WEB3FORMS_ACCESS_KEY = 'PASTE-YOUR-WEB3FORMS-ACCESS-KEY-HERE';
 // Where the browser lands after a successful submit (the thank-you page).
 const REDIRECT_URL = 'https://www.myfinance-online.co.za/thank-you';
 
-// TODO: confirm the firm's real phone number and office hours.
+// TODO: confirm the firm's office hours.
 const email = 'tax@myfinance-online.co.za';
-const phone = '+27 (0)51 000 0000';
 ---
 <Base title="Contact — MyFINANCE Online" description="Get in touch with MyFINANCE Online — request a quote, book a callback or send us a message. Bloemfontein-based accounting, tax and payroll.">
   <!-- Header -->
@@ -41,10 +40,6 @@ const phone = '+27 (0)51 000 0000';
             <li>
               <div class="font-medium text-navy">Email</div>
               <a href={`mailto:${email}`} class="text-accent hover:underline">{email}</a>
-            </li>
-            <li>
-              <div class="font-medium text-navy">Phone</div>
-              <a href={`tel:${phone.replace(/[^+0-9]/g, '')}`} class="text-slate-600 hover:text-navy">{phone}</a>
             </li>
             <li>
               <div class="font-medium text-navy">Office</div>
