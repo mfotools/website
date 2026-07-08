@@ -2,9 +2,11 @@
 
 Static marketing website for **www.myfinance-online.co.za**, built with
 [Astro](https://astro.build) + [Tailwind CSS](https://tailwindcss.com).
-Pure static output — no server-side runtime. Deploy by copying the built
-`dist/` folder onto any web host (IIS, Apache, nginx, b12, cPanel — anything
-that serves static files).
+Pure static output — no server-side runtime. **Hosted on GitHub Pages**:
+every push to `main` triggers the Actions workflow
+(`.github/workflows/deploy.yml`), which builds the site and publishes it.
+The output is still portable static HTML, so it can be copied onto any
+other web host (IIS, Apache, nginx, cPanel) if hosting ever changes.
 
 > This is **separate** from the Virta product site in `../website/`. Same
 > tooling and conventions, different brand and content.
@@ -20,19 +22,38 @@ npm run dev            # local preview at http://localhost:4321
 npm run build          # produces dist/  ← this is what gets deployed
 ```
 
-## Deploy workflow
+## Deploy workflow (GitHub Pages)
 
-1. `npm run build` — regenerates `dist/`.
-2. Commit (`dist/` **is** committed — see `.gitignore`).
-3. Push to GitHub.
-4. Tell the hosting company to publish the contents of `MFO/dist/` to the
-   web root for `www.myfinance-online.co.za`. (They copy the **contents** of
-   `dist/`, not the `dist` folder itself.)
+Deployment is automatic: **push to `main` and GitHub Actions builds and
+publishes the site.** No manual upload, no hosting company to notify per
+release.
+
+1. Edit content, then `npm run build` (optional locally — the workflow
+   builds too, but a local build catches errors before you push).
+2. Commit and push to `main`.
+3. The `Deploy to GitHub Pages` workflow runs; the live site updates in a
+   minute or two.
+
+**One-time GitHub setup** (in the repo on github.com — can't be scripted):
+
+- **Settings → Pages → Source: "GitHub Actions"**.
+- **Settings → Pages → Custom domain:** `www.myfinance-online.co.za`, then
+  tick **Enforce HTTPS** once the certificate is issued.
+
+**One-time DNS** (at whoever manages the `myfinance-online.co.za` DNS zone):
+
+- `www` → **CNAME** → `mfotools.github.io`
+- apex `myfinance-online.co.za` → **A** records `185.199.108.153`,
+  `185.199.109.153`, `185.199.110.153`, `185.199.111.153` (and the matching
+  `AAAA` records for IPv6) so the bare domain redirects to `www`.
+
+The custom domain is kept by `public/CNAME` (copied into every build as
+`dist/CNAME`); GitHub Pages reads it to hold the domain across deploys.
 
 Because every page builds as `<page>/index.html` (Astro's default
-"directory" format), clean URLs like `/services` work on any host with zero
-rewrite configuration. A `web.config` is included for IIS hosts (MIME types,
-404, security headers) and is harmless elsewhere.
+"directory" format), clean URLs like `/services` work with zero rewrite
+configuration. A `web.config` is included for IIS hosts and is harmless on
+Pages.
 
 ---
 
