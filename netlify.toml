@@ -1,9 +1,0 @@
-# Netlify build configuration for the MyFINANCE Online website.
-# Netlify runs this on every push to GitHub, builds the Astro site, and
-# publishes the contents of dist/. Nothing else to configure.
-[build]
-  command = "npm run build"
-  publish = "dist"
-
-[build.environment]
-  NODE_VERSION = "22"

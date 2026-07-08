@@ -1,0 +1,48 @@
+name: Deploy to GitHub Pages
+
+# Builds the Astro site and publishes it to GitHub Pages on every push to
+# main. Replaces the Netlify build config — no third-party service; GitHub
+# builds and hosts it directly from this repo.
+#
+# One-time repo setup (GitHub UI, can't be done from code):
+#   Settings -> Pages -> Build and deployment -> Source: "GitHub Actions".
+#   Then Settings -> Pages -> Custom domain: www.myfinance-online.co.za,
+#   and tick "Enforce HTTPS" once the certificate is issued.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Permissions the deploy-pages action needs.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment; don't cancel an in-progress run.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Build with Astro
+        uses: withastro/action@v3
+        with:
+          node-version: 22
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
