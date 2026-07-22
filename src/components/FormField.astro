@@ -1,0 +1,83 @@
+---
+import type { Field } from '../data/order';
+import Self from './FormField.astro';
+interface Props { field: Field }
+const { field } = Astro.props;
+const req = !!field.required;
+
+// Repeater setup
+const min = field.min ?? 1;
+const max = field.max ?? 4;
+const defaultCount = field.defaultCount ?? min;
+const counts = Array.from({ length: max - min + 1 }, (_, i) => min + i);
+const blocks = Array.from({ length: max }, (_, i) => i + 1);
+---
+{field.type === 'repeater' ? (
+  <div class="sm:col-span-2" data-repeater={field.name}>
+    <label class="label" for={`${field.name}_count`}>
+      {field.countLabel ?? field.label} {req && <span class="text-accent">*</span>}
+    </label>
+    <select class="field sm:max-w-[12rem]" id={`${field.name}_count`} name={`${field.name}_count`} data-repeater-count>
+      {counts.map((n) => <option value={n} selected={n === defaultCount}>{n}</option>)}
+    </select>
+
+    {blocks.map((i) => (
+      <div class="repeater-item mt-4 rounded-xl border border-slate-200 bg-slate-50/60 p-4" data-repeater-item={i} style={i > defaultCount ? 'display:none' : ''}>
+        <p class="mb-3 text-sm font-semibold text-navy">{field.itemLabel ?? 'Item'} {i}</p>
+        <div class="grid gap-4 sm:grid-cols-2">
+          {field.subFields?.map((sf) => (
+            <Self field={{ ...sf, name: `${field.name}_${i}_${sf.name}`, wide: false }} />
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+) : (
+  <div
+    class={field.wide ? 'sm:col-span-2' : ''}
+    data-show-when-field={field.showWhen?.field}
+    data-show-when-equals={field.showWhen?.equals}
+    data-show-when-values={field.showWhen?.oneOf?.join('|')}
+    style={field.showWhen ? 'display:none' : undefined}
+  >
+    {field.type === 'note' && (
+      <p class="rounded-xl border border-accent/30 bg-accent-soft px-4 py-3 text-sm leading-relaxed text-navy">{field.help}</p>
+    )}
+
+    {field.type !== 'radio' && field.type !== 'note' && (
+      <label class="label" for={field.name}>
+        {field.label} {req && <span class="text-accent">*</span>}
+      </label>
+    )}
+
+    {field.type === 'textarea' && (
+      <textarea class="field" id={field.name} name={field.name} rows="3" required={req} placeholder={field.placeholder}></textarea>
+    )}
+
+    {field.type === 'select' && (
+      <select class="field" id={field.name} name={field.name} required={req}>
+        <option value="" selected={!field.default}>Select…</option>
+        {field.options?.map((o) => <option value={o} selected={o === field.default}>{o}</option>)}
+      </select>
+    )}
+
+    {field.type === 'radio' && (
+      <fieldset>
+        <legend class="label">{field.label} {req && <span class="text-accent">*</span>}</legend>
+        <div class="flex flex-col gap-3 sm:flex-row">
+          {field.options?.map((o, i) => (
+            <label class="flex flex-1 cursor-pointer items-center gap-2.5 rounded-xl border border-slate-200 px-4 py-2.5 text-sm text-navy has-[:checked]:border-accent has-[:checked]:bg-accent-soft">
+              <input type="radio" name={field.name} value={o} required={req && i === 0} class="h-4 w-4 border-slate-300 text-accent focus:ring-accent" /> {o}
+            </label>
+          ))}
+        </div>
+      </fieldset>
+    )}
+
+    {['text', 'email', 'tel', 'number', 'date'].includes(field.type) && (
+      <input class="field" id={field.name} name={field.name} type={field.type} required={req} placeholder={field.placeholder} min={field.type === 'number' ? '0' : undefined} />
+    )}
+
+    {field.help && field.type !== 'note' && <p class="mt-1.5 text-xs text-slate-500">{field.help}</p>}
+  </div>
+)}

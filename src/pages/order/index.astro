@@ -1,0 +1,46 @@
+---
+import Base from '../../layouts/Base.astro';
+import { SERVICES } from '../../data/order';
+
+const zar = (n: number) => 'R' + n.toLocaleString('en-ZA');
+
+// Only live (non-hidden) services appear in the catalogue.
+const services = SERVICES.filter((s) => !s.hidden);
+---
+<Base title="Online Services — MyFINANCE Online" description="Order a specific accounting, tax or company-secretarial service online — fixed price, secure payment via PayFast.">
+  <!-- Header -->
+  <section class="bg-navy-deep">
+    <div class="container-v py-20">
+      <span class="eyebrow">Order online</span>
+      <h1 class="mt-4 max-w-3xl text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl">
+        Online services — fixed price, done for you.
+      </h1>
+      <p class="mt-5 max-w-2xl text-lg leading-relaxed text-white/60">
+        Pick the service you need, tell us the details, and pay securely online. Each service is a fixed once-off fee — no surprises.
+      </p>
+    </div>
+  </section>
+
+  <section class="container-v py-20">
+    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {services.map((s) => (
+        <a href={`/order/${s.slug}`} class="card flex flex-col">
+          <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">{s.category}</span>
+          <h3 class="mt-1.5 text-lg font-bold text-navy">{s.title}</h3>
+          <p class="mt-2 flex-1 text-sm leading-relaxed text-slate-600">{s.summary}</p>
+          <div class="mt-5 flex items-center justify-between gap-3">
+            <span class="whitespace-nowrap text-xl font-bold text-navy">{zar(s.price)} <span class="text-xs font-normal text-slate-400">incl. VAT</span></span>
+            {s.turnaround && <span class="text-right text-xs text-slate-400">{s.turnaround.replace(/\s*\(.*\)$/, '')}</span>}
+          </div>
+          <span class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-accent">
+            Start →
+          </span>
+        </a>
+      ))}
+    </div>
+
+    <p class="mt-14 text-center text-sm text-slate-500">
+      Need something not listed here? <a href="/contact#quote" class="font-medium text-accent hover:underline">Request a quote</a>.
+    </p>
+  </section>
+</Base>
