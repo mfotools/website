@@ -29,7 +29,11 @@ const services = SERVICES.filter((s) => !s.hidden);
           <h3 class="mt-1.5 text-lg font-bold text-navy">{s.title}</h3>
           <p class="mt-2 flex-1 text-sm leading-relaxed text-slate-600">{s.summary}</p>
           <div class="mt-5 flex items-center justify-between gap-3">
-            <span class="whitespace-nowrap text-xl font-bold text-navy">{zar(s.price)} <span class="text-xs font-normal text-slate-400">incl. VAT</span></span>
+            {s.orderOnly || s.price == null ? (
+              <span class="whitespace-nowrap text-sm font-bold text-accent">By assessment</span>
+            ) : (
+              <span class="whitespace-nowrap text-xl font-bold text-navy">{zar(s.price)} <span class="text-xs font-normal text-slate-400">incl. VAT</span></span>
+            )}
             {s.turnaround && <span class="text-right text-xs text-slate-400">{s.turnaround.replace(/\s*\(.*\)$/, '')}</span>}
           </div>
           <span class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-accent">

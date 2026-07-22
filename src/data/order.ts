@@ -53,11 +53,12 @@ export interface OrderService {
   title: string;
   category: string;
   summary: string;
-  price: number; // ZAR, once-off — TODO: confirm each price
+  price?: number; // ZAR, once-off. Omit when orderOnly (price on assessment).
   priceNote?: string; // small caveat shown next to the price (e.g. exclusions)
   turnaround?: string; // e.g. "3–5 business days"
   info?: string; // optional longer description, shown as a collapsible panel
   hidden?: boolean; // true = not shown on /order and no page generated (kept for later)
+  orderOnly?: boolean; // true = no price / no PayFast; request-only (we assess & quote first)
   fields: Field[];
 }
 
@@ -190,6 +191,40 @@ export const SERVICES: OrderService[] = [
       { name: 'rep_capacity', label: 'Capacity', type: 'select', required: true, options: ['Public Officer', 'Director', 'Member', 'Trustee', 'Partner', 'Accounting Officer', 'Individual (self)', 'Other'] },
       { name: 'rep_email', label: 'Representative email', type: 'email', required: true, placeholder: 'you@example.com' },
       { name: 'rep_cell', label: 'Representative cell number', type: 'tel', required: true, placeholder: '082 000 0000' },
+    ],
+  },
+  {
+    slug: 'coida-registration',
+    title: 'COIDA registration',
+    category: 'Payroll & Labour',
+    summary: 'Register as an employer with the Compensation Fund (Workmen’s Compensation).',
+    orderOnly: true,
+    turnaround: 'Confirmed once we’ve assessed your request',
+    info: 'COIDA (Workmen’s Compensation) registration is handled case by case. Before we take it on we first confirm whether we’re able to assist with your particular industry and circumstances — so this is a request, not an instant purchase, and no payment is taken now. Once we’ve reviewed your details we’ll confirm whether we can help and send you a quote.',
+    fields: [
+      { name: 'entity_name', label: 'Employer / entity name', type: 'text', required: true, placeholder: 'Acme (Pty) Ltd' },
+      { name: 'entity_type', label: 'Entity type', type: 'select', required: true, options: ['Company (Pty) Ltd', 'Close corporation (CC)', 'Sole proprietor', 'Trust', 'Non-profit (NPC)', 'Partnership', 'Other'] },
+      { name: 'registration_number', label: 'Registration number', type: 'text', placeholder: 'CIPC / entity reg number' },
+      { name: 'income_tax_number', label: 'Income tax number', type: 'text', required: true },
+      { name: 'nature_of_business', label: 'Nature of business', type: 'text', required: true, wide: true, placeholder: 'e.g. Building construction, retail, IT services', help: 'Please give as much detail as possible — the nature of your business determines the assessment class and tariff (rate) applied to your COIDA assessment.' },
+      { name: 'number_of_employees', label: 'Number of employees', type: 'number', required: true, placeholder: 'e.g. 8' },
+      { name: 'first_employee_date', label: 'Date first employee started working', type: 'date', required: true },
+      { name: 'estimated_annual_earnings', label: 'Estimated total annual employee earnings', type: 'text', required: true, placeholder: 'e.g. R1.2 million' },
+      {
+        name: 'director',
+        label: 'Directors',
+        type: 'repeater',
+        countLabel: 'How many directors?',
+        itemLabel: 'Director',
+        min: 1,
+        max: 5,
+        defaultCount: 1,
+        subFields: [
+          { name: 'full_name', label: 'Full name', type: 'text', required: true, placeholder: 'Jane Smith' },
+          { name: 'id_number', label: 'ID number', type: 'text', required: true, placeholder: '8001015009087' },
+        ],
+      },
+      { name: 'notes', label: 'Additional notes', type: 'textarea', wide: true, placeholder: 'Anything we should know?' },
     ],
   },
   {
