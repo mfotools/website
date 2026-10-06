@@ -1,0 +1,13 @@
+---
+// The hCaptcha box for a Web3Forms form. Put it inside the <form>; the page must also include
+// <CaptchaScripts /> once. Web3Forms supplies the site key on the free plan, and the token travels
+// in the form as "h-captcha-response". It is only ENFORCED once hCaptcha is switched on for the
+// form in the Web3Forms dashboard; until then this stops bots that use the page, not ones that
+// post to Web3Forms directly.
+---
+<div class="sm:col-span-2" data-captcha-block>
+  <div class="h-captcha" data-captcha="true"></div>
+  <p class="captcha-error mt-1 hidden text-sm text-red-600" role="alert">
+    Please tick the “I am human” box first.
+  </p>
+</div>

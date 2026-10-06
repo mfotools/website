@@ -1,6 +1,8 @@
 ---
 import Base from '../../layouts/Base.astro';
 import FormField from '../../components/FormField.astro';
+import Captcha from '../../components/Captcha.astro';
+import CaptchaScripts from '../../components/CaptchaScripts.astro';
 import { SERVICES, CONTACT_FIELDS, getService } from '../../data/order';
 import {
   PAYFAST,
@@ -70,6 +72,8 @@ const fields = [...CONTACT_FIELDS, ...service.fields];
         <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off" />
 
         {fields.map((f) => <FormField field={f} />)}
+
+        <Captcha />
 
         <div class="sm:col-span-2 mt-2 flex flex-col gap-3 sm:flex-row-reverse sm:items-center">
           {!service.orderOnly && (
@@ -174,6 +178,7 @@ const fields = [...CONTACT_FIELDS, ...service.fields];
     if (payBtn) payBtn.addEventListener('click', async () => {
       // Use the browser's native validation on the visible order form.
       if (!orderForm.reportValidity()) return;
+      if (!window.mfoCaptchaSolved(orderForm)) return;
 
       errEl.classList.add('hidden');
       payBtn.disabled = true;
@@ -206,4 +211,5 @@ const fields = [...CONTACT_FIELDS, ...service.fields];
       payfastForm.submit();
     });
   </script>
+  <CaptchaScripts />
 </Base>

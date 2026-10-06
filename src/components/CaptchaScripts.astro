@@ -1,0 +1,27 @@
+---
+// Load once per page that uses <Captcha />. Loads the Web3Forms hCaptcha script and stops a form
+// being sent before its box is ticked. window.mfoCaptchaSolved(form) is for forms sent by script.
+---
+<script is:inline src="https://web3forms.com/client/script.js" async defer></script>
+<script is:inline>
+  (function () {
+    function solved(form) {
+      var token = form.querySelector('[name="h-captcha-response"]');
+      return !!(token && token.value);
+    }
+
+    // Shows or hides the "tick the box" line for this form; returns whether it may be sent.
+    window.mfoCaptchaSolved = function (form) {
+      var ok = solved(form);
+      var error = form.querySelector('[data-captcha-block] .captcha-error');
+      if (error) error.classList.toggle('hidden', ok);
+      return ok;
+    };
+
+    document.addEventListener('submit', function (event) {
+      var form = event.target;
+      if (!form.querySelector || !form.querySelector('[data-captcha-block]')) return;
+      if (!window.mfoCaptchaSolved(form)) event.preventDefault();
+    }, true);
+  })();
+</script>

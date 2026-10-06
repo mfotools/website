@@ -1,5 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
+import Captcha from '../components/Captcha.astro';
+import CaptchaScripts from '../components/CaptchaScripts.astro';
 
 // ── Web3Forms setup ───────────────────────────────────────────────────────
 // 1. Create a free account at https://web3forms.com (no login needed — it just
@@ -82,6 +84,7 @@ const email = 'tax@myfinance-online.co.za';
               <label class="label" for="g-message">Message</label>
               <textarea class="field" id="g-message" name="message" rows="4" required placeholder="How can we help?"></textarea>
             </div>
+            <Captcha />
             <div class="sm:col-span-2">
               <button type="submit" class="btn-primary w-full sm:w-auto">Send message</button>
             </div>
@@ -166,6 +169,7 @@ const email = 'tax@myfinance-online.co.za';
                 <option>Any of the above</option>
               </select>
             </div>
+            <Captcha />
             <div class="sm:col-span-2">
               <button type="submit" class="btn-primary w-full sm:w-auto">Submit quote request</button>
             </div>
@@ -200,6 +204,7 @@ const email = 'tax@myfinance-online.co.za';
                 <option>Any time during business hours</option>
               </select>
             </div>
+            <Captcha />
             <div class="sm:col-span-2">
               <button type="submit" class="btn-primary w-full sm:w-auto">Request a callback</button>
             </div>
@@ -208,4 +213,5 @@ const email = 'tax@myfinance-online.co.za';
       </div>
     </div>
   </section>
+  <CaptchaScripts />
 </Base>
