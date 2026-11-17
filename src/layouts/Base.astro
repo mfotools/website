@@ -46,5 +46,18 @@ const ogImage = new URL('/og-image.png', Astro.site).href;
       <slot />
     </main>
     <Footer />
+    <!-- Tawk.to chat: the same widget as the Virta app and www.virta.co.za, so every chat lands in one inbox. -->
+    <script is:inline>
+      window.Tawk_API = window.Tawk_API || {};
+      window.Tawk_LoadStart = new Date();
+      (function () {
+        var chat = document.createElement('script');
+        chat.async = true;
+        chat.src = 'https://embed.tawk.to/6a211396c872ba1c2b6ffe33/1jq8j917r';
+        chat.charset = 'UTF-8';
+        chat.setAttribute('crossorigin', '*');
+        document.head.appendChild(chat);
+      })();
+    </script>
   </body>
 </html>
