@@ -19,6 +19,11 @@ const benefits = [
     items: ['Partner pricing on Virta', 'No separate tools to pay for'],
   },
   {
+    title: 'Your clients pay less too',
+    body: 'Clients who pay for their own accounting software can cancel it once their books are on Virta under your plan. Their total accounting cost goes down, and that’s a good reason to stay with you.',
+    items: ['Clients drop their own subscription', 'Lower total cost for your clients'],
+  },
+  {
     title: 'Support from people who use it',
     body: 'Our own accountants run their clients on Virta every day, so the help you get is practical, not a script.',
     items: ['Onboarding for your practice', 'Free conversion of client books', 'In-house support', 'Virta training for your staff'],
@@ -166,7 +171,7 @@ const faqs = [
   <section id="apply" class="scroll-mt-24 container-v pb-24">
     <div class="mx-auto max-w-3xl rounded-2xl border border-slate-200 bg-white p-7 shadow-sm">
       <h2 class="text-xl font-bold text-navy">Apply to become a partner</h2>
-      <p class="mt-1.5 text-sm text-slate-500">Tell us about your practice. We’ll send your partner pricing and call you to talk it through, with no obligation.</p>
+      <p class="mt-1.5 text-sm text-slate-500">Tell us about your practice. We’ll call you, then send a savings quote showing what you and your clients pay today against your partner pricing. No obligation.</p>
       <form action="https://api.web3forms.com/submit" method="POST" class="mt-6 grid gap-4 sm:grid-cols-2">
         <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
         <input type="hidden" name="subject" value="Website enquiry: Partner application" />
@@ -221,6 +226,53 @@ const faqs = [
           <label class="label" for="p-current">What do you use today?</label>
           <input class="field" id="p-current" type="text" name="current_software" placeholder="e.g. Virta, other software, spreadsheets" />
         </div>
+
+        <fieldset class="sm:col-span-2 mt-2">
+          <legend class="text-sm font-semibold text-navy">What your practice pays for software each month</legend>
+          <p class="mt-1 text-sm text-slate-500">Only what your practice pays and keeps as its own cost. We use it to work out your saving; your partner pricing comes from your client numbers.</p>
+          <div class="mt-4 grid gap-4 sm:grid-cols-2">
+            <div>
+              <label class="label" for="p-spend-acc">Accounting software (R)</label>
+              <input class="field" id="p-spend-acc" type="number" min="0" name="spend_accounting" placeholder="e.g. 4000" />
+            </div>
+            <div>
+              <label class="label" for="p-spend-pay">Payroll software (R)</label>
+              <input class="field" id="p-spend-pay" type="number" min="0" name="spend_payroll" placeholder="e.g. 800" />
+            </div>
+            <div>
+              <label class="label" for="p-spend-pm">Practice management (R)</label>
+              <input class="field" id="p-spend-pm" type="number" min="0" name="spend_practice_management" placeholder="e.g. 1500" />
+            </div>
+            <div>
+              <label class="label" for="p-spend-doc">Document capture (R)</label>
+              <input class="field" id="p-spend-doc" type="number" min="0" name="spend_document_capture" placeholder="e.g. 600" />
+            </div>
+            <div class="sm:col-span-2">
+              <label class="label" for="p-spend-other">Other, e.g. AFS or e-signatures (R)</label>
+              <input class="field" id="p-spend-other" type="number" min="0" name="spend_other" placeholder="e.g. 900" />
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="sm:col-span-2 mt-2">
+          <legend class="text-sm font-semibold text-navy">Clients who pay for their own accounting software</legend>
+          <p class="mt-1 text-sm text-slate-500">Including subscriptions you pass on to clients. These clients could cancel theirs once their books are on Virta.</p>
+          <div class="mt-4 grid gap-4 sm:grid-cols-2">
+            <div>
+              <label class="label" for="p-own-count">How many clients</label>
+              <input class="field" id="p-own-count" type="number" min="0" name="clients_paying_own_software" placeholder="e.g. 15" />
+            </div>
+            <div>
+              <label class="label" for="p-own-avg">Roughly what each pays a month (R)</label>
+              <input class="field" id="p-own-avg" type="number" min="0" name="client_software_avg_monthly" placeholder="e.g. 450" />
+            </div>
+          </div>
+        </fieldset>
+
+        <p class="sm:col-span-2 text-sm text-slate-500">
+          After our first call we’ll ask for proof of these amounts: a billing-page screenshot or last month’s invoice for each tool. We use it only to prepare your savings quote and delete it once the quote is done.
+        </p>
+
         <div class="sm:col-span-2">
           <label class="label" for="p-message">Anything else we should know?</label>
           <textarea class="field" id="p-message" name="message" rows="3" placeholder="Questions, timing, what you’d like to move first"></textarea>
