@@ -1,0 +1,234 @@
+---
+import Base from '../layouts/Base.astro';
+import Captcha from '../components/Captcha.astro';
+import CaptchaScripts from '../components/CaptchaScripts.astro';
+
+// Same Web3Forms key and thank-you page as the contact forms; the subject line marks it as a partner application.
+const WEB3FORMS_ACCESS_KEY = '366c88fc-4624-4828-a250-0c32cc32fb90';
+const REDIRECT_URL = 'https://www.myfinance-online.co.za/thank-you';
+
+const benefits = [
+  {
+    title: 'Twenty years of know-how on call',
+    body: 'Bring us the hard ones. A monthly tax and technical clinic, a second opinion on tricky tax, AFS and SARS-dispute questions, and the templates we use ourselves.',
+    items: ['Monthly tax and technical clinic', 'Second-opinion line for difficult files', 'Engagement letters, working papers and checklists', 'Procedures and fee-setting guidance'],
+  },
+  {
+    title: 'Systems that run the practice',
+    body: 'Virta, the cloud platform we run our own practice on, with books for every client and the compliance work built in.',
+    items: ['Onboarding for you and your staff', 'Free conversion of client books', 'Priority support', 'Early access to new features'],
+  },
+  {
+    title: 'Training for your team',
+    body: 'Technical updates and hands-on product training, so your staff work the way the best practices do.',
+    items: ['Staff onboarding sessions', 'Technical tax and accounting updates', 'A library of recorded lessons'],
+  },
+  {
+    title: 'Your brand, in front of more people',
+    body: 'Partners are showcased across our channels, so clients looking for an accountant find you.',
+    items: ['MyFINANCE Online Partner badge', 'Listing in our find-a-partner directory', 'Case studies and joint webinars', 'Features on our LinkedIn'],
+  },
+  {
+    title: 'A peer group',
+    body: 'Running a small practice can be lonely. Partners meet, compare notes and help each other.',
+    items: ['Quarterly partner meetup', 'Partner chat group'],
+  },
+];
+
+const tiers = [
+  { name: 'Starter', units: 'Up to 50 units' },
+  { name: 'Growth', units: '51 to 150 units' },
+  { name: 'Established', units: '151 to 400 units' },
+  { name: 'Network', units: 'Over 400 units' },
+];
+
+const standards = [
+  'Registered with SAIPA, SAICA or an equivalent professional body',
+  'Professional indemnity cover in force',
+  'A signed partner agreement and code of conduct',
+];
+
+const faqs = [
+  {
+    q: 'Do I keep my own name and clients?',
+    a: 'Yes. You stay an independent practice. Your clients, your brand and your data stay yours, and our partner agreement includes a mutual non-solicit clause.',
+  },
+  {
+    q: 'Do I have to use Virta?',
+    a: 'No. Virta is there if you want it, and most partners will. The know-how, training and showcasing stand on their own.',
+  },
+  {
+    q: 'How is the fee worked out?',
+    a: 'By the size of your client book. Companies, close corporations and trusts count as one unit each, and individuals count as half a unit. We review it once a year, so growing mid-year doesn’t push your fee up straight away.',
+  },
+  {
+    q: 'What if I want to leave?',
+    a: 'After the first 12 months you can leave on a month’s notice. The partner badge and directory listing come off, and everything else stays with you.',
+  },
+];
+---
+<Base title="Partner with us | MyFINANCE Online" description="Join the MyFINANCE Online partner network: 20 years of accounting and tax know-how, Virta, training and brand exposure for independent accounting practices.">
+  <!-- Header -->
+  <section class="bg-navy-deep">
+    <div class="container-v py-20">
+      <span class="eyebrow">Partner network</span>
+      <h1 class="mt-4 max-w-3xl text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl">
+        Run your own practice, backed by a group.
+      </h1>
+      <p class="mt-5 max-w-2xl text-lg leading-relaxed text-white/60">
+        Keep your name and your clients. Get 20 years of accounting and tax experience, the systems we run our own practice on, training for your team and a bigger stage for your brand.
+      </p>
+      <div class="mt-8">
+        <a href="#apply" class="btn-primary">Apply to become a partner</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  <section class="container-v py-24">
+    <div class="space-y-16">
+      {benefits.map((b, i) => (
+        <div class="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+          <div>
+            <span class="text-sm font-semibold text-accent">0{i + 1}</span>
+            <h2 class="mt-2 text-2xl font-bold tracking-tight text-navy">{b.title}</h2>
+            <p class="mt-3 text-base leading-relaxed text-slate-600">{b.body}</p>
+          </div>
+          <ul class="grid gap-3 sm:grid-cols-2">
+            {b.items.map((item) => (
+              <li class="flex items-start gap-2.5 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-navy">
+                <span class="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-accent-soft text-[11px] font-bold text-accent">✓</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Fee and standards -->
+  <section class="bg-sky-soft">
+    <div class="container-v grid gap-12 py-20 lg:grid-cols-2">
+      <div>
+        <span class="text-sm font-semibold text-accent">Membership fee</span>
+        <h2 class="mt-2 text-2xl font-bold tracking-tight text-navy">Priced by the size of your client book</h2>
+        <p class="mt-3 text-base leading-relaxed text-slate-600">
+          A company, close corporation or trust counts as one unit. An individual counts as half. A practice with 40 companies and 60 individuals has 70 units.
+        </p>
+        <ul class="mt-6 grid gap-3 sm:grid-cols-2">
+          {tiers.map((t) => (
+            <li class="rounded-xl border border-slate-200 bg-white px-4 py-3">
+              <div class="text-sm font-semibold text-navy">{t.name}</div>
+              <div class="text-sm text-slate-500">{t.units}</div>
+            </li>
+          ))}
+        </ul>
+        <p class="mt-4 text-sm text-slate-500">Apply below and we’ll send you the fee for your tier.</p>
+      </div>
+      <div>
+        <span class="text-sm font-semibold text-accent">Partner standards</span>
+        <h2 class="mt-2 text-2xl font-bold tracking-tight text-navy">Every partner carries our name</h2>
+        <p class="mt-3 text-base leading-relaxed text-slate-600">So every partner meets the same bar.</p>
+        <ul class="mt-6 space-y-3">
+          {standards.map((s) => (
+            <li class="flex items-start gap-2.5 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-navy">
+              <span class="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-accent-soft text-[11px] font-bold text-accent">✓</span>
+              <span>{s}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="container-v py-20">
+    <h2 class="text-2xl font-bold tracking-tight text-navy">Questions partners ask</h2>
+    <div class="mt-8 grid gap-6 md:grid-cols-2">
+      {faqs.map((f) => (
+        <div class="rounded-2xl border border-slate-200 bg-white p-6">
+          <h3 class="font-semibold text-navy">{f.q}</h3>
+          <p class="mt-2 text-sm leading-relaxed text-slate-600">{f.a}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Application -->
+  <section id="apply" class="scroll-mt-24 container-v pb-24">
+    <div class="mx-auto max-w-3xl rounded-2xl border border-slate-200 bg-white p-7 shadow-sm">
+      <h2 class="text-xl font-bold text-navy">Apply to become a partner</h2>
+      <p class="mt-1.5 text-sm text-slate-500">Tell us about your practice. We’ll call you to talk it through, with no obligation.</p>
+      <form action="https://api.web3forms.com/submit" method="POST" class="mt-6 grid gap-4 sm:grid-cols-2">
+        <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
+        <input type="hidden" name="subject" value="Website enquiry: Partner application" />
+        <input type="hidden" name="from_name" value="MyFINANCE Online website" />
+        <input type="hidden" name="redirect" value={REDIRECT_URL} />
+        <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off" />
+
+        <div>
+          <label class="label" for="p-name">Your name <span class="text-accent">*</span></label>
+          <input class="field" id="p-name" type="text" name="name" required placeholder="Jane Smith" />
+        </div>
+        <div>
+          <label class="label" for="p-firm">Practice name <span class="text-accent">*</span></label>
+          <input class="field" id="p-firm" type="text" name="practice_name" required placeholder="Acme Accountants" />
+        </div>
+        <div>
+          <label class="label" for="p-email">Email <span class="text-accent">*</span></label>
+          <input class="field" id="p-email" type="email" name="email" required placeholder="you@example.com" />
+        </div>
+        <div>
+          <label class="label" for="p-phone">Phone <span class="text-accent">*</span></label>
+          <input class="field" id="p-phone" type="tel" name="phone" required placeholder="082 000 0000" />
+        </div>
+        <div>
+          <label class="label" for="p-body">Professional body <span class="text-accent">*</span></label>
+          <select class="field" id="p-body" name="professional_body" required>
+            <option value="">Select…</option>
+            <option>SAIPA</option>
+            <option>SAICA</option>
+            <option>CIMA</option>
+            <option>ACCA</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div>
+          <label class="label" for="p-town">Town or city</label>
+          <input class="field" id="p-town" type="text" name="town" placeholder="e.g. Bloemfontein" />
+        </div>
+        <div>
+          <label class="label" for="p-companies">Company, CC and trust clients <span class="text-accent">*</span></label>
+          <input class="field" id="p-companies" type="number" min="0" name="company_clients" required placeholder="e.g. 40" />
+        </div>
+        <div>
+          <label class="label" for="p-individuals">Individual clients <span class="text-accent">*</span></label>
+          <input class="field" id="p-individuals" type="number" min="0" name="individual_clients" required placeholder="e.g. 60" />
+        </div>
+        <div>
+          <label class="label" for="p-staff">Staff, including you</label>
+          <input class="field" id="p-staff" type="number" min="1" name="staff" placeholder="e.g. 3" />
+        </div>
+        <div>
+          <label class="label" for="p-virta">Do you use Virta?</label>
+          <select class="field" id="p-virta" name="uses_virta">
+            <option value="">Select…</option>
+            <option>Yes</option>
+            <option>No, but I’d like to</option>
+            <option>No</option>
+          </select>
+        </div>
+        <div class="sm:col-span-2">
+          <label class="label" for="p-message">What do you most want from the partnership?</label>
+          <textarea class="field" id="p-message" name="message" rows="3" placeholder="e.g. a second opinion on tax, training for my staff, more clients"></textarea>
+        </div>
+        <Captcha />
+        <div class="sm:col-span-2">
+          <button type="submit" class="btn-primary w-full sm:w-auto">Send application</button>
+        </div>
+      </form>
+    </div>
+  </section>
+  <CaptchaScripts />
+</Base>
