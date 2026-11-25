@@ -9,43 +9,40 @@ const REDIRECT_URL = 'https://www.myfinance-online.co.za/thank-you';
 
 const benefits = [
   {
-    title: 'Twenty years of know-how on call',
-    body: 'Bring us the hard ones. A monthly tax and technical clinic, a second opinion on tricky tax, AFS and SARS-dispute questions, and the templates we use ourselves.',
-    items: ['Monthly tax and technical clinic', 'Second-opinion line for difficult files', 'Engagement letters, working papers and checklists', 'Procedures and fee-setting guidance'],
+    title: 'One platform for the whole practice',
+    body: 'Partners run on Virta, the cloud platform we run our own practice on. Every client’s books and all the practice and compliance work live in one place.',
+    items: ['Books for every company client', 'VAT and provisional tax', 'CIPC and annual financial statements', 'Payroll, jobs and deadlines'],
   },
   {
-    title: 'Systems that run the practice',
-    body: 'Virta, the cloud platform we run our own practice on, with books for every client and the compliance work built in.',
-    items: ['Onboarding for you and your staff', 'Free conversion of client books', 'Priority support', 'Early access to new features'],
+    title: 'Pay less than you do now',
+    body: 'Partners get Virta below the standard price. And one platform replaces the accounting package, workflow tool, AFS software and e-sign service you pay for separately today.',
+    items: ['Partner pricing on Virta', 'No separate tools to pay for'],
   },
   {
-    title: 'Training for your team',
-    body: 'Technical updates and hands-on product training, so your staff work the way the best practices do.',
-    items: ['Staff onboarding sessions', 'Technical tax and accounting updates', 'A library of recorded lessons'],
+    title: 'Support from people who use it',
+    body: 'Our own accountants run their clients on Virta every day, so the help you get is practical, not a script.',
+    items: ['Onboarding for your practice', 'Free conversion of client books', 'In-house support', 'Virta training for your staff'],
+  },
+  {
+    title: 'Help running your practice',
+    body: 'We share how we run a practice on Virta: how we set it up, the workflows we use and the templates that save us time.',
+    items: ['Setup and workflows', 'Practice templates'],
   },
   {
     title: 'Your brand, in front of more people',
     body: 'Partners are showcased across our channels, so clients looking for an accountant find you.',
-    items: ['MyFINANCE Online Partner badge', 'Listing in our find-a-partner directory', 'Case studies and joint webinars', 'Features on our LinkedIn'],
-  },
-  {
-    title: 'A peer group',
-    body: 'Running a small practice can be lonely. Partners meet, compare notes and help each other.',
-    items: ['Quarterly partner meetup', 'Partner chat group'],
+    items: ['MyFINANCE Online Partner badge', 'Listing in our find-a-partner directory', 'Features in our showcasing'],
   },
 ];
 
-const tiers = [
-  { name: 'Starter', units: 'Up to 50 units' },
-  { name: 'Growth', units: '51 to 150 units' },
-  { name: 'Established', units: '151 to 400 units' },
-  { name: 'Network', units: 'Over 400 units' },
-];
+const companyBands = ['1 to 25', '26 to 75', '76 to 150', 'Over 150'];
+const individualBands = ['Up to 50', '51 to 150', '151 to 300', 'Over 300'];
 
 const standards = [
+  'Your practice runs on Virta',
   'Registered with SAIPA, SAICA or an equivalent professional body',
   'Professional indemnity cover in force',
-  'A signed partner agreement and code of conduct',
+  'A signed partner agreement',
 ];
 
 const faqs = [
@@ -55,28 +52,28 @@ const faqs = [
   },
   {
     q: 'Do I have to use Virta?',
-    a: 'No. Virta is there if you want it, and most partners will. The know-how, training and showcasing stand on their own.',
+    a: 'Yes. Virta is the heart of the partnership: it’s where the saving and the support come from. We convert your clients’ books for free to get you started.',
   },
   {
-    q: 'How is the fee worked out?',
-    a: 'By the size of your client book. Companies, close corporations and trusts count as one unit each, and individuals count as half a unit. We review it once a year, so growing mid-year doesn’t push your fee up straight away.',
+    q: 'How is pricing worked out?',
+    a: 'By the companies and individuals you look after, each with its own band. The more companies you have, the lower the rate per company. Bands are reviewed once a year.',
   },
   {
     q: 'What if I want to leave?',
-    a: 'After the first 12 months you can leave on a month’s notice. The partner badge and directory listing come off, and everything else stays with you.',
+    a: 'After the first 12 months you can leave on a month’s notice. You can stay on Virta at the standard price; the partner pricing, badge and directory listing stop.',
   },
 ];
 ---
-<Base title="Partner with us | MyFINANCE Online" description="Join the MyFINANCE Online partner network: 20 years of accounting and tax know-how, Virta, training and brand exposure for independent accounting practices.">
+<Base title="Partner with us | MyFINANCE Online" description="Join the MyFINANCE Online partner network: run your practice on one platform, Virta, at partner pricing, with in-house support, staff training and brand exposure.">
   <!-- Header -->
   <section class="bg-navy-deep">
     <div class="container-v py-20">
       <span class="eyebrow">Partner network</span>
       <h1 class="mt-4 max-w-3xl text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl">
-        Run your own practice, backed by a group.
+        One platform for the whole practice, backed by a group.
       </h1>
       <p class="mt-5 max-w-2xl text-lg leading-relaxed text-white/60">
-        Keep your name and your clients. Get 20 years of accounting and tax experience, the systems we run our own practice on, training for your team and a bigger stage for your brand.
+        Run your practice on Virta, the platform we use for everything, at partner pricing. Keep your name and your clients, and get support from accountants who use it every day.
       </p>
       <div class="mt-8">
         <a href="#apply" class="btn-primary">Apply to become a partner</a>
@@ -107,24 +104,34 @@ const faqs = [
     </div>
   </section>
 
-  <!-- Fee and standards -->
+  <!-- Pricing and standards -->
   <section class="bg-sky-soft">
     <div class="container-v grid gap-12 py-20 lg:grid-cols-2">
       <div>
-        <span class="text-sm font-semibold text-accent">Membership fee</span>
-        <h2 class="mt-2 text-2xl font-bold tracking-tight text-navy">Priced by the size of your client book</h2>
+        <span class="text-sm font-semibold text-accent">Partner pricing</span>
+        <h2 class="mt-2 text-2xl font-bold tracking-tight text-navy">Priced by the companies and individuals you look after</h2>
         <p class="mt-3 text-base leading-relaxed text-slate-600">
-          A company, close corporation or trust counts as one unit. An individual counts as half. A practice with 40 companies and 60 individuals has 70 units.
+          Companies, close corporations and trusts fall in one band and individuals in another. The more companies you have, the lower the rate per company.
         </p>
-        <ul class="mt-6 grid gap-3 sm:grid-cols-2">
-          {tiers.map((t) => (
-            <li class="rounded-xl border border-slate-200 bg-white px-4 py-3">
-              <div class="text-sm font-semibold text-navy">{t.name}</div>
-              <div class="text-sm text-slate-500">{t.units}</div>
-            </li>
-          ))}
-        </ul>
-        <p class="mt-4 text-sm text-slate-500">Apply below and we’ll send you the fee for your tier.</p>
+        <div class="mt-6 grid gap-6 sm:grid-cols-2">
+          <div>
+            <h3 class="text-sm font-semibold text-navy">Company clients</h3>
+            <ul class="mt-2 space-y-2">
+              {companyBands.map((b) => (
+                <li class="rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-600">{b}</li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-sm font-semibold text-navy">Individual clients</h3>
+            <ul class="mt-2 space-y-2">
+              {individualBands.map((b) => (
+                <li class="rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-600">{b}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <p class="mt-4 text-sm text-slate-500">Apply below and we’ll send you the partner pricing for your practice.</p>
       </div>
       <div>
         <span class="text-sm font-semibold text-accent">Partner standards</span>
@@ -159,7 +166,7 @@ const faqs = [
   <section id="apply" class="scroll-mt-24 container-v pb-24">
     <div class="mx-auto max-w-3xl rounded-2xl border border-slate-200 bg-white p-7 shadow-sm">
       <h2 class="text-xl font-bold text-navy">Apply to become a partner</h2>
-      <p class="mt-1.5 text-sm text-slate-500">Tell us about your practice. We’ll call you to talk it through, with no obligation.</p>
+      <p class="mt-1.5 text-sm text-slate-500">Tell us about your practice. We’ll send your partner pricing and call you to talk it through, with no obligation.</p>
       <form action="https://api.web3forms.com/submit" method="POST" class="mt-6 grid gap-4 sm:grid-cols-2">
         <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
         <input type="hidden" name="subject" value="Website enquiry: Partner application" />
@@ -207,21 +214,16 @@ const faqs = [
           <input class="field" id="p-individuals" type="number" min="0" name="individual_clients" required placeholder="e.g. 60" />
         </div>
         <div>
-          <label class="label" for="p-staff">Staff, including you</label>
+          <label class="label" for="p-staff">Staff who’ll use Virta</label>
           <input class="field" id="p-staff" type="number" min="1" name="staff" placeholder="e.g. 3" />
         </div>
         <div>
-          <label class="label" for="p-virta">Do you use Virta?</label>
-          <select class="field" id="p-virta" name="uses_virta">
-            <option value="">Select…</option>
-            <option>Yes</option>
-            <option>No, but I’d like to</option>
-            <option>No</option>
-          </select>
+          <label class="label" for="p-current">What do you use today?</label>
+          <input class="field" id="p-current" type="text" name="current_software" placeholder="e.g. Virta, other software, spreadsheets" />
         </div>
         <div class="sm:col-span-2">
-          <label class="label" for="p-message">What do you most want from the partnership?</label>
-          <textarea class="field" id="p-message" name="message" rows="3" placeholder="e.g. a second opinion on tax, training for my staff, more clients"></textarea>
+          <label class="label" for="p-message">Anything else we should know?</label>
+          <textarea class="field" id="p-message" name="message" rows="3" placeholder="Questions, timing, what you’d like to move first"></textarea>
         </div>
         <Captcha />
         <div class="sm:col-span-2">
