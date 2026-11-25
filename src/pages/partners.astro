@@ -1,0 +1,288 @@
+---
+import Base from '../layouts/Base.astro';
+import Captcha from '../components/Captcha.astro';
+import CaptchaScripts from '../components/CaptchaScripts.astro';
+
+// Same Web3Forms key and thank-you page as the contact forms; the subject line marks it as a partner application.
+const WEB3FORMS_ACCESS_KEY = '366c88fc-4624-4828-a250-0c32cc32fb90';
+const REDIRECT_URL = 'https://www.myfinance-online.co.za/thank-you';
+
+const benefits = [
+  {
+    title: 'One platform for the whole practice',
+    body: 'Partners run on Virta, the cloud platform we run our own practice on. Every client’s books and all the practice and compliance work live in one place.',
+    items: ['Books for every company client', 'VAT and provisional tax', 'CIPC and annual financial statements', 'Payroll, jobs and deadlines'],
+  },
+  {
+    title: 'Pay less than you do now',
+    body: 'Partners get Virta below the standard price. And one platform replaces the accounting package, workflow tool, AFS software and e-sign service you pay for separately today.',
+    items: ['Partner pricing on Virta', 'No separate tools to pay for'],
+  },
+  {
+    title: 'Your clients pay less too',
+    body: 'Clients who pay for their own accounting software can cancel it once their books are on Virta under your plan. Their total accounting cost goes down, and that’s a good reason to stay with you.',
+    items: ['Clients drop their own subscription', 'Lower total cost for your clients'],
+  },
+  {
+    title: 'Support from people who use it',
+    body: 'Our own accountants run their clients on Virta every day, so the help you get is practical, not a script.',
+    items: ['Onboarding for your practice', 'Free conversion of client books', 'In-house support', 'Virta training for your staff'],
+  },
+  {
+    title: 'Help running your practice',
+    body: 'We share how we run a practice on Virta: how we set it up, the workflows we use and the templates that save us time.',
+    items: ['Setup and workflows', 'Practice templates'],
+  },
+  {
+    title: 'Your brand, in front of more people',
+    body: 'Partners are showcased across our channels, so clients looking for an accountant find you.',
+    items: ['MyFINANCE Online Partner badge', 'Listing in our find-a-partner directory', 'Features in our showcasing'],
+  },
+];
+
+const companyBands = ['1 to 25', '26 to 75', '76 to 150', 'Over 150'];
+const individualBands = ['Up to 50', '51 to 150', '151 to 300', 'Over 300'];
+
+const standards = [
+  'Your practice runs on Virta',
+  'Registered with SAIPA, SAICA or an equivalent professional body',
+  'Professional indemnity cover in force',
+  'A signed partner agreement',
+];
+
+const faqs = [
+  {
+    q: 'Do I keep my own name and clients?',
+    a: 'Yes. You stay an independent practice. Your clients, your brand and your data stay yours, and our partner agreement includes a mutual non-solicit clause.',
+  },
+  {
+    q: 'Do I have to use Virta?',
+    a: 'Yes. Virta is the heart of the partnership: it’s where the saving and the support come from. We convert your clients’ books for free to get you started.',
+  },
+  {
+    q: 'How is pricing worked out?',
+    a: 'By the companies and individuals you look after, each with its own band. The more companies you have, the lower the rate per company. Bands are reviewed once a year.',
+  },
+  {
+    q: 'What if I want to leave?',
+    a: 'After the first 12 months you can leave on a month’s notice. You can stay on Virta at the standard price; the partner pricing, badge and directory listing stop.',
+  },
+];
+---
+<Base title="Partner with us | MyFINANCE Online" description="Join the MyFINANCE Online partner network: run your practice on one platform, Virta, at partner pricing, with in-house support, staff training and brand exposure.">
+  <!-- Header -->
+  <section class="bg-navy-deep">
+    <div class="container-v py-20">
+      <span class="eyebrow">Partner network</span>
+      <h1 class="mt-4 max-w-3xl text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl">
+        One platform for the whole practice, backed by a group.
+      </h1>
+      <p class="mt-5 max-w-2xl text-lg leading-relaxed text-white/60">
+        Run your practice on Virta, the platform we use for everything, at partner pricing. Keep your name and your clients, and get support from accountants who use it every day.
+      </p>
+      <div class="mt-8">
+        <a href="#apply" class="btn-primary">Apply to become a partner</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  <section class="container-v py-24">
+    <div class="space-y-16">
+      {benefits.map((b, i) => (
+        <div class="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+          <div>
+            <span class="text-sm font-semibold text-accent">0{i + 1}</span>
+            <h2 class="mt-2 text-2xl font-bold tracking-tight text-navy">{b.title}</h2>
+            <p class="mt-3 text-base leading-relaxed text-slate-600">{b.body}</p>
+          </div>
+          <ul class="grid gap-3 sm:grid-cols-2">
+            {b.items.map((item) => (
+              <li class="flex items-start gap-2.5 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-navy">
+                <span class="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-accent-soft text-[11px] font-bold text-accent">✓</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Pricing and standards -->
+  <section class="bg-sky-soft">
+    <div class="container-v grid gap-12 py-20 lg:grid-cols-2">
+      <div>
+        <span class="text-sm font-semibold text-accent">Partner pricing</span>
+        <h2 class="mt-2 text-2xl font-bold tracking-tight text-navy">Priced by the companies and individuals you look after</h2>
+        <p class="mt-3 text-base leading-relaxed text-slate-600">
+          Companies, close corporations and trusts fall in one band and individuals in another. The more companies you have, the lower the rate per company.
+        </p>
+        <div class="mt-6 grid gap-6 sm:grid-cols-2">
+          <div>
+            <h3 class="text-sm font-semibold text-navy">Company clients</h3>
+            <ul class="mt-2 space-y-2">
+              {companyBands.map((b) => (
+                <li class="rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-600">{b}</li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-sm font-semibold text-navy">Individual clients</h3>
+            <ul class="mt-2 space-y-2">
+              {individualBands.map((b) => (
+                <li class="rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-600">{b}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <p class="mt-4 text-sm text-slate-500">Apply below and we’ll send you the partner pricing for your practice.</p>
+      </div>
+      <div>
+        <span class="text-sm font-semibold text-accent">Partner standards</span>
+        <h2 class="mt-2 text-2xl font-bold tracking-tight text-navy">Every partner carries our name</h2>
+        <p class="mt-3 text-base leading-relaxed text-slate-600">So every partner meets the same bar.</p>
+        <ul class="mt-6 space-y-3">
+          {standards.map((s) => (
+            <li class="flex items-start gap-2.5 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-navy">
+              <span class="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-accent-soft text-[11px] font-bold text-accent">✓</span>
+              <span>{s}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="container-v py-20">
+    <h2 class="text-2xl font-bold tracking-tight text-navy">Questions partners ask</h2>
+    <div class="mt-8 grid gap-6 md:grid-cols-2">
+      {faqs.map((f) => (
+        <div class="rounded-2xl border border-slate-200 bg-white p-6">
+          <h3 class="font-semibold text-navy">{f.q}</h3>
+          <p class="mt-2 text-sm leading-relaxed text-slate-600">{f.a}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Application -->
+  <section id="apply" class="scroll-mt-24 container-v pb-24">
+    <div class="mx-auto max-w-3xl rounded-2xl border border-slate-200 bg-white p-7 shadow-sm">
+      <h2 class="text-xl font-bold text-navy">Apply to become a partner</h2>
+      <p class="mt-1.5 text-sm text-slate-500">Tell us about your practice. We’ll call you, then send a savings quote showing what you and your clients pay today against your partner pricing. No obligation.</p>
+      <form action="https://api.web3forms.com/submit" method="POST" class="mt-6 grid gap-4 sm:grid-cols-2">
+        <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
+        <input type="hidden" name="subject" value="Website enquiry: Partner application" />
+        <input type="hidden" name="from_name" value="MyFINANCE Online website" />
+        <input type="hidden" name="redirect" value={REDIRECT_URL} />
+        <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off" />
+
+        <div>
+          <label class="label" for="p-name">Your name <span class="text-accent">*</span></label>
+          <input class="field" id="p-name" type="text" name="name" required placeholder="Jane Smith" />
+        </div>
+        <div>
+          <label class="label" for="p-firm">Practice name <span class="text-accent">*</span></label>
+          <input class="field" id="p-firm" type="text" name="practice_name" required placeholder="Acme Accountants" />
+        </div>
+        <div>
+          <label class="label" for="p-email">Email <span class="text-accent">*</span></label>
+          <input class="field" id="p-email" type="email" name="email" required placeholder="you@example.com" />
+        </div>
+        <div>
+          <label class="label" for="p-phone">Phone <span class="text-accent">*</span></label>
+          <input class="field" id="p-phone" type="tel" name="phone" required placeholder="082 000 0000" />
+        </div>
+        <div>
+          <label class="label" for="p-body">Professional body <span class="text-accent">*</span></label>
+          <select class="field" id="p-body" name="professional_body" required>
+            <option value="">Select…</option>
+            <option>SAIPA</option>
+            <option>SAICA</option>
+            <option>CIMA</option>
+            <option>ACCA</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div>
+          <label class="label" for="p-town">Town or city</label>
+          <input class="field" id="p-town" type="text" name="town" placeholder="e.g. Bloemfontein" />
+        </div>
+        <div>
+          <label class="label" for="p-companies">Company, CC and trust clients <span class="text-accent">*</span></label>
+          <input class="field" id="p-companies" type="number" min="0" name="company_clients" required placeholder="e.g. 40" />
+        </div>
+        <div>
+          <label class="label" for="p-individuals">Individual clients <span class="text-accent">*</span></label>
+          <input class="field" id="p-individuals" type="number" min="0" name="individual_clients" required placeholder="e.g. 60" />
+        </div>
+        <div>
+          <label class="label" for="p-staff">Staff who’ll use Virta</label>
+          <input class="field" id="p-staff" type="number" min="1" name="staff" placeholder="e.g. 3" />
+        </div>
+        <div>
+          <label class="label" for="p-current">What do you use today?</label>
+          <input class="field" id="p-current" type="text" name="current_software" placeholder="e.g. Virta, other software, spreadsheets" />
+        </div>
+
+        <fieldset class="sm:col-span-2 mt-2">
+          <legend class="text-sm font-semibold text-navy">What your practice pays for software each month</legend>
+          <p class="mt-1 text-sm text-slate-500">Only what your practice pays and keeps as its own cost. We use it to work out your saving; your partner pricing comes from your client numbers.</p>
+          <div class="mt-4 grid gap-4 sm:grid-cols-2">
+            <div>
+              <label class="label" for="p-spend-acc">Accounting software (R)</label>
+              <input class="field" id="p-spend-acc" type="number" min="0" name="spend_accounting" placeholder="e.g. 4000" />
+            </div>
+            <div>
+              <label class="label" for="p-spend-pay">Payroll software (R)</label>
+              <input class="field" id="p-spend-pay" type="number" min="0" name="spend_payroll" placeholder="e.g. 800" />
+            </div>
+            <div>
+              <label class="label" for="p-spend-pm">Practice management (R)</label>
+              <input class="field" id="p-spend-pm" type="number" min="0" name="spend_practice_management" placeholder="e.g. 1500" />
+            </div>
+            <div>
+              <label class="label" for="p-spend-doc">Document capture (R)</label>
+              <input class="field" id="p-spend-doc" type="number" min="0" name="spend_document_capture" placeholder="e.g. 600" />
+            </div>
+            <div class="sm:col-span-2">
+              <label class="label" for="p-spend-other">Other, e.g. AFS or e-signatures (R)</label>
+              <input class="field" id="p-spend-other" type="number" min="0" name="spend_other" placeholder="e.g. 900" />
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="sm:col-span-2 mt-2">
+          <legend class="text-sm font-semibold text-navy">Clients who pay for their own accounting software</legend>
+          <p class="mt-1 text-sm text-slate-500">Including subscriptions you pass on to clients. These clients could cancel theirs once their books are on Virta.</p>
+          <div class="mt-4 grid gap-4 sm:grid-cols-2">
+            <div>
+              <label class="label" for="p-own-count">How many clients</label>
+              <input class="field" id="p-own-count" type="number" min="0" name="clients_paying_own_software" placeholder="e.g. 15" />
+            </div>
+            <div>
+              <label class="label" for="p-own-avg">Roughly what each pays a month (R)</label>
+              <input class="field" id="p-own-avg" type="number" min="0" name="client_software_avg_monthly" placeholder="e.g. 450" />
+            </div>
+          </div>
+        </fieldset>
+
+        <p class="sm:col-span-2 text-sm text-slate-500">
+          After our first call we’ll ask for proof of these amounts: a billing-page screenshot or last month’s invoice for each tool. We use it only to prepare your savings quote and delete it once the quote is done.
+        </p>
+
+        <div class="sm:col-span-2">
+          <label class="label" for="p-message">Anything else we should know?</label>
+          <textarea class="field" id="p-message" name="message" rows="3" placeholder="Questions, timing, what you’d like to move first"></textarea>
+        </div>
+        <Captcha />
+        <div class="sm:col-span-2">
+          <button type="submit" class="btn-primary w-full sm:w-auto">Send application</button>
+        </div>
+      </form>
+    </div>
+  </section>
+  <CaptchaScripts />
+</Base>
